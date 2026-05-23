@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+
+      .container {
+        width: 350px;
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .input-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      input {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        outline: none;
+      }
+
+      button {
+        padding: 12px 18px;
+        border: none;
+        border-radius: 10px;
+        background: #667eea;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #5a67d8;
+      }
+
+      ul {
+        list-style: none;
+        margin-top: 20px;
+      }
+
+      li {
+        background: #f4f4f4;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      li span {
+        cursor: pointer;
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Tasks</h1>
+
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Add a task..." />
+        <button onclick="addTask()">Add</button>
+      </div>
+
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      function addTask() {
+        const input = document.getElementById("taskInput");
+        const taskText = input.value;
+
+        if (taskText === "") return;
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            ${taskText}
+            <span onclick="this.parentElement.remove()">✖</span>
+        `;
+
+        document.getElementById("taskList").appendChild(li);
+
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>
